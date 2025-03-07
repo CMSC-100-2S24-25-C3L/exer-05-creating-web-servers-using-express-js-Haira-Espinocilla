@@ -7,17 +7,18 @@ const books = [
     { bookName: 'The Little Prince', isbn: '978-0156012195', author: 'Antoine Saint-Exupery', yearPublished: '1943' }
 ];
 
+//to iterate over each book bcoz there are many books
 books.forEach(book => {
     needle.post('http://localhost:3000/add-book', book, (err, res) => {
-        if (err) {
+        if (err) { //if request fails
             console.error(`Error adding ${book.bookName}:`, err);
-        } else {
+        } else { //if book is successfully added
             console.log(`Added ${book.bookName}:`, res.body);
         }
     });
 });
 
-// Test searching for books by author
+//search books by author
 needle.get('http://localhost:3000/find-by-author?author=J.K+Rowling', (err, res) => {
     if (err) {
         console.error(err);
@@ -26,7 +27,7 @@ needle.get('http://localhost:3000/find-by-author?author=J.K+Rowling', (err, res)
     }
 });
 
-// Test searching for books by ISBN and author
+//search books by isbn and author
 needle.get('http://localhost:3000/find-by-isbn-author?isbn=978-0-7475-3269-9&author=J.K+Rowling', (err, res) => {
     if (err) {
         console.error(err);
