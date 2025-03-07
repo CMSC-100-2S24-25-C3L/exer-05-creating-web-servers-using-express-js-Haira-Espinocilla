@@ -32,7 +32,7 @@ app.get('/find-by-isbn-author', (req, res) => {
         const data = fs.readFileSync("books.txt", 'utf8'); // to read file
         //pang-filter (to find books that match isbn and author)
         const books = data.split('\n').filter(line => {
-            const [name, bookIsbn, bookAuthor, year] = line.split(',').map(x => x.trim()); //splits each line into array + trims each value + extracts author
+            const [name, bookIsbn, bookAuthor, year] = line.split(',').map(x => x.trim()); //splits each with delimiter + trim whitespace
             return bookIsbn === isbn && bookAuthor.toLowerCase() === author.toLowerCase();
         });
         res.json({ books });
